@@ -1,3 +1,116 @@
+# CONTAINERIZZARE POSTGRESS CON DOCKER
+
+### Passaggi importanti
+
+### Step 1: Verifica l'installazione di Docker
+Come prima cosa verifichiamo la versione di docker installata sul pc.
+Se Docker è installato correttamente, vedrai la versione installata.
+Se hai bisogno di avviare Docker manualmente (su Linux):
+
+```
+sudo systemctl start docker
+```
+### Step 2: Fai un backup del tuo database esistente
+Poiché hai già PostgreSQL installato e funzionante, esegui un backup per evitare perdite di dati.
+Apri il terminale e accedi a PostgreSQL:
+```
+psql -U postgres
+```
+Mostra tutti i database:
+```
+\l
+```
+Sostituisci miodb con il tuo database:
+```
+pg_dump -U postgres -d miodb > backup.sql
+```
+### Step 3: Ferma e disinstalla PostgreSQL locale (opzionale)
+Se vuoi usare solo il container, ferma PostgreSQL locale per evitare conflitti di porte:
+```
+sudo systemctl stop postgresql
+```
+Verifica che non sia più in esecuzione:
+```
+ps aux | grep postgres
+```
+Se vuoi riattivarlo in futuro:
+```
+sudo systemctl start postgresql
+```
+
+### Step 4: Avvia un container PostgreSQL con volume per la persistenza
+Esegui il seguente comando per avviare PostgreSQL in Docker:
+```
+docker run -d \
+  --name postgres-container \
+  -e POSTGRES_USER=Celiani \
+  -e POSTGRES_PASSWORD=mia_password \
+  -e POSTGRES_DB=CelianiDB \
+  -p 5432:5432 \
+  -v postgres_data:/var/lib/postgresql/data \
+  postgres:latest
+```
+Cosa significa questo comando?
+
+1. -d: Avvia il container in background
+2. --name postgres-container: Nome del container
+3. -e POSTGRES_USER=Celiani: Nome utente
+4. -e POSTGRES_PASSWORD=mia_password: Password
+5. -e POSTGRES_DB=CelianiDB: Nome del database predefinito
+6. -p 5432:5432: Esponi la porta 5432
+7. -v postgres_data:/var/lib/postgresql/data: Usa un volume per i dati
+
+### Step 5: Verifica che il container sia in esecuzione
+Controlla lo stato del container:
+```
+docker ps
+```
+Se è attivo, dovresti vedere qualcosa come:
+```
+CONTAINER ID   IMAGE      COMMAND                  STATUS         PORTS                    NAMES
+abc123456789   postgres   "docker-entrypoint.s…"   Up X minutes   0.0.0.0:5432->5432/tcp   postgres-container
+```
+
+### Step 6: Ripristina il backup nel container
+Copia il file backup.sql nel container:
+```
+docker cp backup.sql postgres-container:/backup.sql
+```
+Accedi al container:
+```
+docker exec -it postgres-container psql -U Celiani -d CelianiDB
+```
+Dentro PostgreSQL, esegui il restore:
+```
+\i /backup.sql
+```
+Esci da PostgreSQL:
+```
+\q
+```
+Ora i dati del tuo vecchio database sono stati importati nel nuovo container! 🎉
+
+### Step 7: Test di connessione al database containerizzato
+Prova a connetterti con:
+```
+psql -h localhost -U Celiani -d CelianiDB
+```
+Se funziona, hai completato la containerizzazione con successo!
+
+### 📌 Comandi utili per gestire il container
+
+1. Riavvia il container	docker restart postgres-container
+2. Ferma il container	docker stop postgres-container
+3. Avvia il container	docker start postgres-container
+4. Controlla i log	docker logs postgres-container
+5. Entra nel container	docker exec -it postgres-container bash
+6. Rimuovi il container	docker rm -f postgres-container
+
+
+
+
+
+
 # PRIMA INSTALLAZIONE
 
 ### Passaggi importanti
