@@ -1,32 +1,93 @@
-[![Build Status](https://runbot.odoo.com/runbot/badge/flat/1/master.svg)](https://runbot.odoo.com/runbot)
-[![Tech Doc](https://img.shields.io/badge/master-docs-875A7B.svg?style=flat&colorA=8F8F8F)](https://www.odoo.com/documentation/master)
-[![Help](https://img.shields.io/badge/master-help-875A7B.svg?style=flat&colorA=8F8F8F)](https://www.odoo.com/forum/help-1)
-[![Nightly Builds](https://img.shields.io/badge/master-nightly-875A7B.svg?style=flat&colorA=8F8F8F)](https://nightly.odoo.com/)
+# PRIMA INSTALLAZIONE
 
-Odoo
-----
+### Passaggi importanti
 
-Odoo is a suite of web based open source business apps.
+La prima cosa da fare è andare su GitHub e copiarsi il link del progetto Celiani, dopodiché seguire i seguenti passaggi:
 
-The main Odoo Apps include an <a href="https://www.odoo.com/page/crm">Open Source CRM</a>,
-<a href="https://www.odoo.com/app/website">Website Builder</a>,
-<a href="https://www.odoo.com/app/ecommerce">eCommerce</a>,
-<a href="https://www.odoo.com/app/inventory">Warehouse Management</a>,
-<a href="https://www.odoo.com/app/project">Project Management</a>,
-<a href="https://www.odoo.com/app/accounting">Billing &amp; Accounting</a>,
-<a href="https://www.odoo.com/app/point-of-sale-shop">Point of Sale</a>,
-<a href="https://www.odoo.com/app/employees">Human Resources</a>,
-<a href="https://www.odoo.com/app/social-marketing">Marketing</a>,
-<a href="https://www.odoo.com/app/manufacturing">Manufacturing</a>,
-<a href="https://www.odoo.com/">...</a>
+1. Andare su Esplora risorse del PC e su C: creare una cartella **Celiani**.
+2. Dopodiché eseguire il comando:
 
-Odoo Apps can be used as stand-alone applications, but they also integrate seamlessly so you get
-a full-featured <a href="https://www.odoo.com">Open Source ERP</a> when you install several Apps.
+    ```powershell
+    cd C:/Celiani
+    git clone https://github.com/Codigo-Team/Celiani.git
+    ```
 
-Getting started with Odoo
--------------------------
+Ora lanciamo il comando `code .` per aprire Visual Studio Code e lanciare il seguente comando:
 
-For a standard installation please follow the <a href="https://www.odoo.com/documentation/master/administration/install/install.html">Setup instructions</a>
-from the documentation.
+    ```powershell
+    python -m venv venv
+    ```
 
-To learn the software, we recommend the <a href="https://www.odoo.com/slides">Odoo eLearning</a>, or <a href="https://www.odoo.com/page/scale-up-business-game">Scale-up</a>, the <a href="https://www.odoo.com/page/scale-up-business-game">business game</a>. Developers can start with <a href="https://www.odoo.com/documentation/master/developer/howtos.html">the developer tutorials</a>
+E poi, per attivare l'ambiente virtuale, lanciare:
+
+    ```powershell
+    venv\Scripts\activate
+    ```
+
+**Nota:** Se ottieni un errore di esecuzione (execution policy restriction), esegui questo comando prima di attivare l'ambiente:
+
+    ```powershell
+    Set-ExecutionPolicy Unrestricted -Scope Process
+    ```
+
+Sempre nel path `C:/Celiani/Celiani/Odoo`, lanciare il seguente comando:
+
+    ```powershell
+    pip install -r C:\Celiani\Celiani\requirements.txt
+    ```
+
+Da qui possiamo procedere con l'installazione di PostgreSQL. La cartella in cui deve essere installato deve essere `C:\Program Files\PostgreSQL\17\`.
+
+**PostgreSQL Server, pgAdmin e Command Line Tools sono OBBLIGATORI.**  
+All'utente "postgres" impostiamo una password, quest'ultima servirà per la configurazione di Odoo. Ovviamente ho usato la password "qui8Tiv". Lasciare la porta predefinita "5432". Salvare e riavviare il PC.
+
+Una volta riavviato, torniamo nella cartella di progetto `C:/Celiani/Celiani` e lanciamo il comando da `cmd`:
+
+    ```cmd
+    psql -U postgres
+    ```
+
+Se avete problemi che il comando non viene riconosciuto, è necessario innanzitutto copiare il path della cartella `bin` di PostgreSQL: `C:\Program Files\PostgreSQL\17\bin`. Dopodiché, aprire Esplora risorse e fare tasto destro su "Questo PC" e scegliere **Proprietà**.
+
+1. Vai su "Impostazioni di sistema avanzate" e poi su "Variabili d'ambiente".
+2. Nella sezione "Variabili di sistema", cerca e seleziona la variabile **Path**, poi clicca su "Modifica".
+3. Aggiungi il percorso della cartella `bin` di PostgreSQL alla fine del valore della variabile **Path**.
+4. Salva le modifiche e chiudi tutte le finestre.
+5. Apri una nuova finestra del prompt dei comandi e digita `psql -U postgres`.
+
+Ora dovrebbe funzionare correttamente.
+
+Dopo aver lanciato il comando `psql -U postgres`, avrete la possibilità di creare il database e gli utenti in questo modo:
+
+    ```cmd
+    CREATE USER celiani WITH ENCRYPTED PASSWORD 'qui8Tiv';
+    CREATE DATABASE celiani OWNER celiani;
+    ALTER ROLE celiani SET client_encoding TO 'utf8';
+    ALTER ROLE celiani SET default_transaction_isolation TO 'read committed';
+    ALTER ROLE celiani SET timezone TO 'UTC';
+    GRANT ALL PRIVILEGES ON DATABASE celiani TO celiani;
+    ```
+
+Ora bisogna modificare il file `odoo.conf` in questo modo:
+
+    ```
+    [options]
+    admin_passwd = admin
+    db_host = localhost
+    db_port = 5432
+    db_user = celiani
+    db_password = tua_password
+    db_name = celiani
+    addons_path = C:\Celiani\Celiani\odoo\addons, c:\users\ivang\appdata\local\openerp s.a\odoo\addons\18.0
+    logfile = C:\Celiani\Celiani\odoo\odoo.log
+    ```
+
+Dovrete modificare l'`addons_path` con il vostro percorso di cartella per poter lanciare in localhost correttamente, altrimenti non partirà mai. Ovviamente, ad ogni commit, ricordatevi di escludere questa modifica, altrimenti ogni volta avremo problemi.
+
+Il comando che lanceremo ogni volta per avviare il progetto sarà il seguente:
+
+    ```cmd
+    python odoo-bin -d celiani_db -i base --db_user=celiani --db_password=qui8Tiv
+    ```
+
+Per accedere al login usare le credenziali: `admin - admin`.
