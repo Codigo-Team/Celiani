@@ -24,6 +24,8 @@ Sostituisci miodb con il tuo database:
 ```
 pg_dump -U postgres -d miodb > backup.sql
 ```
+Nota bene che il comando sopra lo devi lanciare dal seguente path: C:\Celiani\Celiani altrimenti non funzionerà! (Verrà chiesta la solita password che utilizziamo, quella che Carlo odia tanto)
+
 ### Step 3: Ferma e disinstalla PostgreSQL locale (opzionale)
 Se vuoi usare solo il container, ferma PostgreSQL locale per evitare conflitti di porte:
 ```
