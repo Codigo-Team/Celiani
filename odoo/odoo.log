@@ -1,0 +1,216 @@
+2025-03-14 11:04:22,627 8948 INFO ? odoo: Odoo version 18.0 
+2025-03-14 11:04:22,627 8948 INFO ? odoo: Using configuration file at C:\Celiani\Celiani\odoo\odoo.conf 
+2025-03-14 11:04:22,627 8948 INFO ? odoo: addons paths: ['C:\\Celiani\\Celiani\\odoo\\addons', 'c:\\users\\ivang\\appdata\\local\\openerp s.a\\odoo\\addons\\18.0', 'c:\\celiani\\celiani\\odoo\\addons'] 
+2025-03-14 11:04:22,627 8948 INFO ? odoo: database: celiani@localhost:5432 
+2025-03-14 11:04:22,663 8948 CRITICAL ? odoo.modules.module: Couldn't load module web 
+2025-03-14 11:04:22,663 8948 ERROR ? odoo.service.server: Failed to load server-wide module `web`.
+The `web` module is provided by the addons found in the `openerp-web` project.
+Maybe you forgot to add those addons in your addons_path configuration. 
+Traceback (most recent call last):
+  File "C:\Celiani\Celiani\odoo\service\server.py", line 1264, in load_server_wide_modules
+    odoo.modules.module.load_openerp_module(m)
+  File "C:\Celiani\Celiani\odoo\modules\module.py", line 384, in load_openerp_module
+    __import__(qualname)
+ModuleNotFoundError: No module named 'odoo.addons.web'
+2025-03-14 11:04:23,096 8948 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltopdf to print a pdf version of the reports. 
+2025-03-14 11:04:23,096 8948 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltoimage to generate images from html. 
+2025-03-14 11:04:24,315 8948 INFO ? odoo.service.server: HTTP service (werkzeug) running on GhismoPC:8069 
+2025-03-14 11:04:24,351 8948 ERROR celiani_db odoo.modules.loading: Database celiani_db not initialized, you can force it with `-i base` 
+2025-03-14 11:04:24,351 8948 INFO celiani_db odoo.modules.registry: Registry loaded in 0.037s 
+2025-03-14 11:05:24,514 8948 ERROR celiani_db odoo.sql_db: bad query: b"\n            SELECT latest_version\n            FROM ir_module_module\n             WHERE name='base'\n        "
+ERROR: ERRORE:  la relazione "ir_module_module" non esiste
+LINE 3:             FROM ir_module_module
+                         ^
+ 
+2025-03-14 11:05:24,514 8948 WARNING celiani_db odoo.addons.base.models.ir_cron: Tried to poll an undefined table on database celiani_db. 
+2025-03-14 11:05:25,675 8948 ERROR celiani_db odoo.sql_db: bad query: b"\n            SELECT latest_version\n            FROM ir_module_module\n             WHERE name='base'\n        "
+ERROR: ERRORE:  la relazione "ir_module_module" non esiste
+LINE 3:             FROM ir_module_module
+                         ^
+ 
+2025-03-14 11:05:25,677 8948 WARNING celiani_db odoo.addons.base.models.ir_cron: Tried to poll an undefined table on database celiani_db. 
+2025-03-14 11:05:45,399 8948 ERROR celiani_db odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "C:\Celiani\Celiani\odoo\http.py", line 2372, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Celiani\Celiani\odoo\http.py", line 1880, in _serve_db
+    rule, args = self.registry['ir.http']._match(self.httprequest.path)
+                 ~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Celiani\Celiani\odoo\modules\registry.py", line 240, in __getitem__
+    return self.models[model_name]
+           ~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'ir.http'
+2025-03-14 11:05:45,402 8948 INFO celiani_db werkzeug: 127.0.0.1 - - [14/Mar/2025 11:05:45] "GET / HTTP/1.1" 500 - 1 0.005 0.012
+2025-03-14 11:05:45,649 8948 ERROR celiani_db odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "C:\Celiani\Celiani\odoo\http.py", line 2372, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Celiani\Celiani\odoo\http.py", line 1880, in _serve_db
+    rule, args = self.registry['ir.http']._match(self.httprequest.path)
+                 ~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Celiani\Celiani\odoo\modules\registry.py", line 240, in __getitem__
+    return self.models[model_name]
+           ~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'ir.http'
+2025-03-14 11:05:45,651 8948 INFO celiani_db werkzeug: 127.0.0.1 - - [14/Mar/2025 11:05:45] "GET /favicon.ico HTTP/1.1" 500 - 1 0.003 0.003
+2025-03-14 11:06:04,677 8948 ERROR celiani_db odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "C:\Celiani\Celiani\odoo\http.py", line 2372, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Celiani\Celiani\odoo\http.py", line 1880, in _serve_db
+    rule, args = self.registry['ir.http']._match(self.httprequest.path)
+                 ~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Celiani\Celiani\odoo\modules\registry.py", line 240, in __getitem__
+    return self.models[model_name]
+           ~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'ir.http'
+2025-03-14 11:06:04,678 8948 INFO celiani_db werkzeug: 127.0.0.1 - - [14/Mar/2025 11:06:04] "GET / HTTP/1.1" 500 - 1 0.001 0.002
+2025-03-14 11:06:05,015 8948 ERROR celiani_db odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "C:\Celiani\Celiani\odoo\http.py", line 2372, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Celiani\Celiani\odoo\http.py", line 1880, in _serve_db
+    rule, args = self.registry['ir.http']._match(self.httprequest.path)
+                 ~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Celiani\Celiani\odoo\modules\registry.py", line 240, in __getitem__
+    return self.models[model_name]
+           ~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'ir.http'
+2025-03-14 11:06:05,016 8948 INFO celiani_db werkzeug: 127.0.0.1 - - [14/Mar/2025 11:06:05] "GET /favicon.ico HTTP/1.1" 500 - 1 0.000 0.006
+2025-03-14 11:06:05,974 8948 ERROR celiani_db odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "C:\Celiani\Celiani\odoo\http.py", line 2372, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Celiani\Celiani\odoo\http.py", line 1880, in _serve_db
+    rule, args = self.registry['ir.http']._match(self.httprequest.path)
+                 ~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Celiani\Celiani\odoo\modules\registry.py", line 240, in __getitem__
+    return self.models[model_name]
+           ~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'ir.http'
+2025-03-14 11:06:05,974 8948 INFO celiani_db werkzeug: 127.0.0.1 - - [14/Mar/2025 11:06:05] "GET / HTTP/1.1" 500 - 1 0.000 0.003
+2025-03-14 11:06:06,307 8948 ERROR celiani_db odoo.http: Exception during request handling. 
+Traceback (most recent call last):
+  File "C:\Celiani\Celiani\odoo\http.py", line 2372, in __call__
+    response = request._serve_db()
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Celiani\Celiani\odoo\http.py", line 1880, in _serve_db
+    rule, args = self.registry['ir.http']._match(self.httprequest.path)
+                 ~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Celiani\Celiani\odoo\modules\registry.py", line 240, in __getitem__
+    return self.models[model_name]
+           ~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'ir.http'
+2025-03-14 11:06:06,307 8948 INFO celiani_db werkzeug: 127.0.0.1 - - [14/Mar/2025 11:06:06] "GET /favicon.ico HTTP/1.1" 500 - 1 0.000 0.007
+2025-03-14 11:06:24,529 8948 ERROR celiani_db odoo.sql_db: bad query: b"\n            SELECT latest_version\n            FROM ir_module_module\n             WHERE name='base'\n        "
+ERROR: ERRORE:  la relazione "ir_module_module" non esiste
+LINE 3:             FROM ir_module_module
+                         ^
+ 
+2025-03-14 11:06:24,529 8948 WARNING celiani_db odoo.addons.base.models.ir_cron: Tried to poll an undefined table on database celiani_db. 
+2025-03-14 11:06:26,702 8948 ERROR celiani_db odoo.sql_db: bad query: b"\n            SELECT latest_version\n            FROM ir_module_module\n             WHERE name='base'\n        "
+ERROR: ERRORE:  la relazione "ir_module_module" non esiste
+LINE 3:             FROM ir_module_module
+                         ^
+ 
+2025-03-14 11:06:26,704 8948 WARNING celiani_db odoo.addons.base.models.ir_cron: Tried to poll an undefined table on database celiani_db. 
+2025-03-14 11:07:24,555 8948 ERROR celiani_db odoo.sql_db: bad query: b"\n            SELECT latest_version\n            FROM ir_module_module\n             WHERE name='base'\n        "
+ERROR: ERRORE:  la relazione "ir_module_module" non esiste
+LINE 3:             FROM ir_module_module
+                         ^
+ 
+2025-03-14 11:07:24,555 8948 WARNING celiani_db odoo.addons.base.models.ir_cron: Tried to poll an undefined table on database celiani_db. 
+2025-03-14 11:07:27,725 8948 ERROR celiani_db odoo.sql_db: bad query: b"\n            SELECT latest_version\n            FROM ir_module_module\n             WHERE name='base'\n        "
+ERROR: ERRORE:  la relazione "ir_module_module" non esiste
+LINE 3:             FROM ir_module_module
+                         ^
+ 
+2025-03-14 11:07:27,728 8948 WARNING celiani_db odoo.addons.base.models.ir_cron: Tried to poll an undefined table on database celiani_db. 
+2025-03-14 11:07:51,102 8948 INFO celiani_db odoo.service.server: Initiating shutdown 
+2025-03-14 11:07:51,102 8948 INFO celiani_db odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+2025-03-14 11:07:52,170 8948 INFO celiani_db odoo.sql_db: ConnectionPool(read/write;used=0/count=0/max=64): Closed 3 connections  
+2025-03-14 11:09:01,061 2904 INFO ? odoo: Odoo version 18.0 
+2025-03-14 11:09:01,061 2904 INFO ? odoo: Using configuration file at C:\Celiani\Celiani\odoo\odoo.conf 
+2025-03-14 11:09:01,061 2904 INFO ? odoo: addons paths: ['C:\\Celiani\\Celiani\\odoo\\addons', 'c:\\users\\ivang\\appdata\\local\\openerp s.a\\odoo\\addons\\18.0', 'c:\\celiani\\celiani\\odoo\\addons'] 
+2025-03-14 11:09:01,061 2904 INFO ? odoo: database: celiani@localhost:5432 
+2025-03-14 11:09:01,102 2904 CRITICAL ? odoo.modules.module: Couldn't load module web 
+2025-03-14 11:09:01,102 2904 ERROR ? odoo.service.server: Failed to load server-wide module `web`.
+The `web` module is provided by the addons found in the `openerp-web` project.
+Maybe you forgot to add those addons in your addons_path configuration. 
+Traceback (most recent call last):
+  File "C:\Celiani\Celiani\odoo\service\server.py", line 1264, in load_server_wide_modules
+    odoo.modules.module.load_openerp_module(m)
+  File "C:\Celiani\Celiani\odoo\modules\module.py", line 384, in load_openerp_module
+    __import__(qualname)
+ModuleNotFoundError: No module named 'odoo.addons.web'
+2025-03-14 11:09:01,182 2904 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltopdf to print a pdf version of the reports. 
+2025-03-14 11:09:01,184 2904 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltoimage to generate images from html. 
+2025-03-14 11:09:01,324 2904 INFO ? odoo.service.server: HTTP service (werkzeug) running on GhismoPC:8069 
+2025-03-14 11:09:01,359 2904 ERROR celiani_db odoo.modules.loading: Database celiani_db not initialized, you can force it with `-i base` 
+2025-03-14 11:09:01,359 2904 INFO celiani_db odoo.modules.registry: Registry loaded in 0.035s 
+2025-03-14 11:10:01,385 2904 ERROR celiani_db odoo.sql_db: bad query: b"\n            SELECT latest_version\n            FROM ir_module_module\n             WHERE name='base'\n        "
+ERROR: ERRORE:  la relazione "ir_module_module" non esiste
+LINE 3:             FROM ir_module_module
+                         ^
+ 
+2025-03-14 11:10:01,385 2904 WARNING celiani_db odoo.addons.base.models.ir_cron: Tried to poll an undefined table on database celiani_db. 
+2025-03-14 11:10:02,432 2904 ERROR celiani_db odoo.sql_db: bad query: b"\n            SELECT latest_version\n            FROM ir_module_module\n             WHERE name='base'\n        "
+ERROR: ERRORE:  la relazione "ir_module_module" non esiste
+LINE 3:             FROM ir_module_module
+                         ^
+ 
+2025-03-14 11:10:02,432 2904 WARNING celiani_db odoo.addons.base.models.ir_cron: Tried to poll an undefined table on database celiani_db. 
+2025-03-14 11:11:01,389 2904 ERROR celiani_db odoo.sql_db: bad query: b"\n            SELECT latest_version\n            FROM ir_module_module\n             WHERE name='base'\n        "
+ERROR: ERRORE:  la relazione "ir_module_module" non esiste
+LINE 3:             FROM ir_module_module
+                         ^
+ 
+2025-03-14 11:11:01,389 2904 WARNING celiani_db odoo.addons.base.models.ir_cron: Tried to poll an undefined table on database celiani_db. 
+2025-03-14 11:11:03,453 2904 ERROR celiani_db odoo.sql_db: bad query: b"\n            SELECT latest_version\n            FROM ir_module_module\n             WHERE name='base'\n        "
+ERROR: ERRORE:  la relazione "ir_module_module" non esiste
+LINE 3:             FROM ir_module_module
+                         ^
+ 
+2025-03-14 11:11:03,453 2904 WARNING celiani_db odoo.addons.base.models.ir_cron: Tried to poll an undefined table on database celiani_db. 
+2025-03-14 11:11:40,889 2904 INFO celiani_db odoo.service.server: Initiating shutdown 
+2025-03-14 11:11:40,889 2904 INFO celiani_db odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+2025-03-14 11:11:40,910 2904 INFO celiani_db odoo.sql_db: ConnectionPool(read/write;used=0/count=0/max=64): Closed 3 connections  
+2025-03-14 11:11:44,711 12444 INFO ? odoo: Odoo version 18.0 
+2025-03-14 11:11:44,711 12444 INFO ? odoo: Using configuration file at C:\Celiani\Celiani\odoo\odoo.conf 
+2025-03-14 11:11:44,711 12444 INFO ? odoo: addons paths: ['C:\\Celiani\\Celiani\\odoo\\addons', 'c:\\users\\ivang\\appdata\\local\\openerp s.a\\odoo\\addons\\18.0', 'c:\\celiani\\celiani\\odoo\\addons'] 
+2025-03-14 11:11:44,711 12444 INFO ? odoo: database: celiani@localhost:5432 
+2025-03-14 11:11:44,825 12444 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltopdf to print a pdf version of the reports. 
+2025-03-14 11:11:44,825 12444 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltoimage to generate images from html. 
+2025-03-14 11:11:44,938 12444 CRITICAL ? odoo.modules.module: Couldn't load module web 
+2025-03-14 11:11:44,938 12444 ERROR ? odoo.service.server: Failed to load server-wide module `web`.
+The `web` module is provided by the addons found in the `openerp-web` project.
+Maybe you forgot to add those addons in your addons_path configuration. 
+Traceback (most recent call last):
+  File "C:\Celiani\Celiani\odoo\service\server.py", line 1264, in load_server_wide_modules
+    odoo.modules.module.load_openerp_module(m)
+  File "C:\Celiani\Celiani\odoo\modules\module.py", line 384, in load_openerp_module
+    __import__(qualname)
+ModuleNotFoundError: No module named 'odoo.addons.web'
+2025-03-14 11:11:44,962 12444 INFO ? odoo.service.server: HTTP service (werkzeug) running on GhismoPC:8069 
+2025-03-14 11:11:44,999 12444 ERROR celiani_db odoo.modules.loading: Database celiani_db not initialized, you can force it with `-i base` 
+2025-03-14 11:11:44,999 12444 INFO celiani_db odoo.modules.registry: Registry loaded in 0.036s 
+2025-03-14 11:12:45,038 12444 ERROR celiani_db odoo.sql_db: bad query: b"\n            SELECT latest_version\n            FROM ir_module_module\n             WHERE name='base'\n        "
+ERROR: ERRORE:  la relazione "ir_module_module" non esiste
+LINE 3:             FROM ir_module_module
+                         ^
+ 
+2025-03-14 11:12:45,039 12444 WARNING celiani_db odoo.addons.base.models.ir_cron: Tried to poll an undefined table on database celiani_db. 
+2025-03-14 11:12:46,073 12444 ERROR celiani_db odoo.sql_db: bad query: b"\n            SELECT latest_version\n            FROM ir_module_module\n             WHERE name='base'\n        "
+ERROR: ERRORE:  la relazione "ir_module_module" non esiste
+LINE 3:             FROM ir_module_module
+                         ^
+ 
+2025-03-14 11:12:46,073 12444 WARNING celiani_db odoo.addons.base.models.ir_cron: Tried to poll an undefined table on database celiani_db. 
+2025-03-14 11:13:33,344 12444 INFO celiani_db odoo.service.server: Initiating shutdown 
+2025-03-14 11:13:33,344 12444 INFO celiani_db odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+2025-03-14 11:13:33,400 12444 INFO celiani_db odoo.sql_db: ConnectionPool(read/write;used=0/count=0/max=64): Closed 3 connections  
