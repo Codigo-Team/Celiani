@@ -28,29 +28,33 @@ Nota bene che il comando sopra lo devi lanciare dal seguente path: C:\Celiani\Ce
 
 ### Step 3: Ferma e disinstalla PostgreSQL locale (opzionale)
 Se vuoi usare solo il container, ferma PostgreSQL locale per evitare conflitti di porte:
-```
+```Linux
 sudo systemctl stop postgresql
 ```
-Verifica che non sia più in esecuzione:
+```cmd
+net stop postgresql-x64-17
 ```
+
+Verifica che non sia più in esecuzione:
+```Linux
 ps aux | grep postgres
 ```
-Se vuoi riattivarlo in futuro:
+```cmd
+sc query postgresql-x64-17
 ```
+
+Se vuoi riattivarlo in futuro:
+```Linux
 sudo systemctl start postgresql
+```
+```cmd
+net start postgresql-x64-17
 ```
 
 ### Step 4: Avvia un container PostgreSQL con volume per la persistenza
 Esegui il seguente comando per avviare PostgreSQL in Docker:
 ```
-docker run -d \
-  --name postgres-container \
-  -e POSTGRES_USER=Celiani \
-  -e POSTGRES_PASSWORD=mia_password \
-  -e POSTGRES_DB=CelianiDB \
-  -p 5432:5432 \
-  -v postgres_data:/var/lib/postgresql/data \
-  postgres:latest
+docker run -d --name postgres-container -e POSTGRES_USER=celiani -e POSTGRES_PASSWORD=qui8Tiv -e POSTGRES_DB=celiani_db -p 5432:5432 -v postgres_data:/var/lib/postgresql/data postgres:latest
 ```
 Cosa significa questo comando?
 
@@ -107,6 +111,13 @@ Se funziona, hai completato la containerizzazione con successo!
 4. Controlla i log	docker logs postgres-container
 5. Entra nel container	docker exec -it postgres-container bash
 6. Rimuovi il container	docker rm -f postgres-container
+
+### Per far partire il server odoo
+Lanciare dalla cartella: C:/Celiani/Celiani il seguente comando
+
+```
+python odoo-bin -d celiani_db -i base --db_user=celiani --db_password=qui8Tiv
+```
 
 
 
