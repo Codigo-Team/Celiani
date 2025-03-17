@@ -1,3 +1,6 @@
+# DOCUMENTAZIONE DI ODOO 18
+Per comprendere meglio le applicazioni riporto qui di seguito il link alla documentazione in italiano di odoo 18: https://www.odoo.com/documentation/18.0/it/applications.html
+
 # CONTAINERIZZARE POSTGRESS CON DOCKER
 
 ### Passaggi importanti
