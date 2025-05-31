@@ -1,0 +1,32 @@
+﻿version: "3.1"
+
+services:
+  celiani_db:
+    image: postgres:15
+    container_name: celiani_db
+    environment:
+      - POSTGRES_DB=celianidb
+      - POSTGRES_USER=celiani_superuser
+      - POSTGRES_PASSWORD=qui8Tiv
+    volumes:
+      - celiani-db-data:/var/lib/postgresql/data
+    restart: always
+
+  odoo:
+    image: odoo:18
+    container_name: celiani-odoo
+    depends_on:
+      - celiani_db
+    ports:
+      - "8069:8069"
+    environment:
+      - HOST=celiani_db
+      - USER=celiani_superuser
+      - PASSWORD=qui8Tiv
+    volumes:
+      - ./addons:/mnt/extra-addons
+      - ./odoo.conf:/etc/odoo/odoo.conf
+    restart: always
+
+volumes:
+  celiani-db-data:
