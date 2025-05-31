@@ -1,5 +1,5 @@
 # Definisci la cartella dove sarà salvato docker-compose.yml
-$odooPath = "C:\CELIANI\celiani"
+$odooPath = "C:\WebApp\Celiani
 
 # Contenuto del file docker-compose.yml
 $composeContent = @'
