@@ -22,3 +22,67 @@ per ripristinare i container correttamente.
 ### Nome DB già esistente
 
 2. In questo caso se appare il seguente messaggio vuol dire che vi è rimasto in memoria la vecchia struttura del db e quindi va eliminata altrimenti potete creare un nuovo db in quella maschera ed in fase di login swithcare database e rimettere quello inserito nel docker-compose.yml o nel odoo.conf.
+
+# COMANDI GIT - PER UN CORRETTO UTILIZZO
+
+## Aggiorniamo il nostro repository e swtch ramo
+Come prima cosa è importante aggiornare il repository locale utilizzando:
+
+```
+git fetch
+git checkout 'nomermo'
+```
+e successivamente passare al ramo desiderato.
+
+## Se il ramo non esiste localmente
+
+Se il ramo non esiste in locale ma solo su remoto puoi eseguire:
+
+```
+git checkout -b 'nomeramo' origin/nomeramo
+```
+
+## Mettere a pari il nuovo/vecchio ramo con il ramo principale
+
+Ci sono due modi: <b>merge</b> o <b>rebase</b>.
+
+### 1. Merge (più sicuro e mantiene la cronologia)
+ Questo porterà nel ramo 'nomeramo' tutti i cambiamenti del ramo master, creando eventualmente un commit di merge.
+
+ ```
+git merge master
+```
+
+### 2. Rebase (più pulito, ma attenzione ai conflitti)
+Questo "rigioca" i commit di 'nomeramo' sopra a master. Può richiedere di risolvere conflitti uno a uno se ci sono divergenze.
+
+```
+git rebase master
+```
+
+### 3. (Facoltativo) Spingere le modifiche aggiornare su remoto
+Se vuoi aggiornare il ramo 'nomeramo' sul repository remoto dopo il merge o rebase:
+
+```
+git push origin 'nomeramo'
+```
+
+⚠️ Se hai fatto un rebase, potresti dover forzare il push:
+
+```
+git push --force origin 'nomeramo'
+```
+
+## Riassunto comandi
+
+```
+# 1. Vai nel ramo
+git checkout 'nomeramo'          # o git checkout -b 'nomeramo' origin/nomeramo
+
+# 2. Porta i cambiamenti da master (scegli una delle due righe)
+git merge master                 # o git rebase master
+
+# 3. Push se vuoi aggiornare il ramo remoto
+git push origin 'nomeramo'      # o git push --force origin 'nomeramo' se hai fatto rebase
+
+```
