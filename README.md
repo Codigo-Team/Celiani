@@ -86,3 +86,24 @@ git merge master                 # o git rebase master
 git push origin 'nomeramo'      # o git push --force origin 'nomeramo' se hai fatto rebase
 
 ```
+
+# BACKUP E RESTORE DATI
+
+Per fare il backup dei dati completi lanciare:
+```
+docker exec -t celiani_db pg_dump -U celiani_superuser celianidb > backup.sql
+
+```
+mentre per fare il restore dei dati lanciare:
+```
+Get-Content .\backup.sql | docker exec -i celiani_db psql -U celiani_superuser -d celianidb
+
+```
+
+## ⚠️NOTA BENE
+Entrambi i comandi vanno lanciati quando il servizio di celiani-odoo è stoppato e celiani_db sempre attivo
+```
+docker-compose stop odoo
+// lanci lo script di restore o backup
+docker-compose start odoo
+```
