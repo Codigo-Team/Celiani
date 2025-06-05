@@ -106,4 +106,6 @@ Entrambi i comandi vanno lanciati quando il servizio di celiani-odoo è stoppato
 docker-compose stop odoo
 // lanci lo script di restore o backup
 docker-compose start odoo
+// oppure
+docker-compose restart
 ```
