@@ -1,5 +1,5 @@
 ﻿version: "3.1"
- 
+
 services:
   celiani_db:
     image: postgres:15
@@ -11,9 +11,11 @@ services:
     volumes:
       - celiani-db-data:/var/lib/postgresql/data
     restart: always
- 
+
   odoo:
-    image: odoo:18
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: celiani-odoo
     depends_on:
       - celiani_db
@@ -26,13 +28,8 @@ services:
     volumes:
       - ./addons:/mnt/extra-addons
       - ./odoo.conf:/etc/odoo/odoo.conf
-    command: >
-      odoo
-      -d celianidb
-      --without-demo=all
-      --load-language=it_IT
-      -i base
+    entrypoint: ["/entrypoint.sh"]
     restart: always
- 
+
 volumes:
   celiani-db-data:
