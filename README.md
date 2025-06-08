@@ -109,3 +109,31 @@ docker-compose start odoo
 // oppure
 docker-compose restart
 ```
+
+# ⚠️ATTENZIONE QUANDO SI AGGIORNA ODOO SU LINUX
+## Per un corretto utilizzo:
+
+Per ogni modifica fatta lato codice dobbiamo copiare i file
+
+```
+Entrypoint.sh
+Dockerfile
+Docker-compose.yml
+odoo.conf
+```
+
+in un altra cartella al di fuori di quella del progetto (Celiani) così, quando vogliamo rilanciare odoo non avremo mai problemi di compatibilità di sintassi. I file elencati precedentemente quelli su master sono funzionanti SOLO per Windows perchè DockerDesktop ( versione di Windows ) ha molta libertà quando si tratta di leggere dei file con quelle configurazioni al suo interno. Mentre il docker di linux è pieno di blocchi ed la sintassi è decisamente diversa! Al momento, all'interno della VM Celiani che ho preparato e sta sul server del cliente ha quei file già settati in maniera corretta, pertanto NON VANNO CANCELLATI.
+
+Prima di fare 
+```
+git fetch e git merge 'nomeramo'
+```
+per applicare le modifiche del vostro lavoro copiate quei file al di fuori di /Celiani/ e successivamente rimetteteli all'interno della cartella.
+Dopodichè lanciare
+```
+sudo docker compose down -v
+sudo docker compose build
+sudo docker compose up -d
+sudo docker logs -f celiani-odoo //se volete essere sicuri se funzionerà o meno il localhost e per monitorare eventuali errori
+```
+e solo poi andare nella pagina localhost:8069.
